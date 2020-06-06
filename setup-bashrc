@@ -1,0 +1,25 @@
+echo """
+alias docker-compose='docker run --rm \\
+    -v /var/run/docker.sock:/var/run/docker.sock \\
+    -v "$PWD:$PWD" \\
+    -w="$PWD" \\
+    docker/compose:1.24.0'
+
+alias make-build='docker-compose build'
+alias make-run='docker-compose run'
+alias make-exec-bk='docker-compose exec backend bash'
+alias make-exec-db='docker-compose exec db bash'
+alias make-upd='docker-compose up -d'
+alias make-logs="docker-compose logs -f --tail='500' backend db"
+alias make-log-bk="docker-compose logs -f --tail='500' backend"
+alias make-log-db="docker-compose logs -f --tail='500' db"
+alias make-up='docker-compose up && docker-compose logs -f --tail='500' backend db'
+alias make-rm='docker-compose rm'
+alias make-rmi='docker-compose down --rmi all'
+alias make-images='docker-compose images'
+alias make-ps='docker-compose s'
+alias make-top='docker-compose top'
+alias make-start='docker-compose start'
+alias make-stop='docker-compose stop'
+alias make-restart='docker-compose restart'
+alias make-pull='git pull origin dev && git submodule update --init --recursive && source .export-alias'""" >> ~/.bashrc
